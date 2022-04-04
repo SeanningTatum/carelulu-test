@@ -10,6 +10,7 @@ describe("smoke tests", () => {
       email: `${faker.internet.userName()}@example.com`,
       password: faker.internet.password(),
     };
+    
     cy.then(() => ({ email: loginForm.email })).as("user");
 
     cy.visit("/");
@@ -33,9 +34,9 @@ describe("smoke tests", () => {
     cy.visit("/");
 
     cy.findByRole("link", { name: /tasks/i }).click();
-    cy.findByText("No notes yet");
+    cy.findByText("No tasks yet");
 
-    cy.findByRole("link", { name: /\+ new note/i }).click();
+    cy.findByRole("link", { name: /\+ new task/i }).click();
 
     cy.findByRole("textbox", { name: /title/i }).type(testNote.title);
     cy.findByRole("textbox", { name: /body/i }).type(testNote.body);
@@ -43,6 +44,6 @@ describe("smoke tests", () => {
 
     cy.findByRole("button", { name: /delete/i }).click();
 
-    cy.findByText("No notes yet");
+    cy.findByText("No tasks yet");
   });
 });
